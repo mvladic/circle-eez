@@ -32,7 +32,7 @@
         },
         {
           "objID": "2212bc5e-cf4a-4a81-c9ab-a671066d086f",
-          "fileName": "screens.c",
+          "fileName": "screens.cpp",
           "template": "#include \"screens.h\"\n#include \"images.h\"\n#include \"fonts.h\"\n#include \"actions.h\"\n#include \"styles.h\"\n#include \"ui.h\"\n\n//${eez-studio LVGL_SCREENS_DEF}\n//${eez-studio LVGL_SCREENS_DEF_EXT}"
         },
         {
@@ -52,7 +52,7 @@
         },
         {
           "objID": "0f3ea37c-f0d3-4061-c693-76b52bd9d632",
-          "fileName": "flow_def.c",
+          "fileName": "flow_def.cpp",
           "template": "#include <eez/core/vars.h>\n\n#include \"flow_def.h\"\n#include \"vars.h\"\n\n//${eez-studio GUI_ASSETS_DEF_COMPRESSED}\n\n//${eez-studio LVGL_NATIVE_VARS_TABLE_DEF}\n"
         },
         {
@@ -62,7 +62,7 @@
         },
         {
           "objID": "5844b3a8-54b7-4bdf-ff04-d052e689328c",
-          "fileName": "images.c",
+          "fileName": "images.cpp",
           "template": "#include \"images.h\"\n\n//${eez-studio LVGL_IMAGES_DEF}"
         },
         {
@@ -77,7 +77,7 @@
         },
         {
           "objID": "81ccb629-7e73-4128-a31a-c5131af1d13d",
-          "fileName": "styles.c",
+          "fileName": "styles.cpp",
           "template": "#include \"styles.h\"\n#include \"images.h\"\n#include \"fonts.h\"\n\n//${eez-studio LVGL_STYLES_DEF}\n"
         },
         {
@@ -87,12 +87,12 @@
         },
         {
           "objID": "292907a7-7032-4814-e210-405def21551e",
-          "fileName": "ui.c",
+          "fileName": "ui.cpp",
           "template": "#include \"ui.h\"\n#include \"screens.h\"\n#include \"images.h\"\n#include \"flow_def.h\"\n\nvoid ui_init() {\n    eez_flow_init(assets, sizeof(assets), (lv_obj_t **)&objects, sizeof(objects), images, sizeof(images));\n}\n\nvoid ui_tick() {\n    eez_flow_tick();\n    tick_screen(g_currentScreen);\n}\n"
         }
       ],
       "destinationFolder": "ui",
-      "lvglInclude": "lvgl.h"
+      "lvglInclude": "lvgl/lvgl.h"
     }
   },
   "variables": {
@@ -148,7 +148,7 @@
           "left": 110,
           "top": -91,
           "width": 87,
-          "height": 24,
+          "height": 25,
           "customInputs": [],
           "customOutputs": []
         },
@@ -157,8 +157,8 @@
           "type": "LVGLActionComponent",
           "left": 544,
           "top": -105,
-          "width": 231,
-          "height": 53,
+          "width": 250,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "actions": [
@@ -178,7 +178,7 @@
           "left": 335,
           "top": -105,
           "width": 87,
-          "height": 53,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "milliseconds": "2000"
