@@ -12,7 +12,7 @@ static void event_handler_cb_main_arc(lv_event_t *e) {
     if (event == LV_EVENT_VALUE_CHANGED) {
         lv_obj_t *ta = lv_event_get_target(e);
         int32_t value = lv_arc_get_value(ta);
-        assignIntegerProperty(0, 8, 2, value, "Failed to assign Value in Arc widget");
+        assignIntegerProperty(0, 10, 2, value, "Failed to assign Value in Arc widget");
     }
 }
 
@@ -21,7 +21,7 @@ static void event_handler_cb_main_arc_2(lv_event_t *e) {
     if (event == LV_EVENT_VALUE_CHANGED) {
         lv_obj_t *ta = lv_event_get_target(e);
         int32_t value = lv_arc_get_value(ta);
-        assignIntegerProperty(0, 9, 2, value, "Failed to assign Value in Arc widget");
+        assignIntegerProperty(0, 11, 2, value, "Failed to assign Value in Arc widget");
     }
 }
 
@@ -43,10 +43,30 @@ void create_screen_main() {
             {
                 lv_obj_t *parent_obj = obj;
                 {
+                    // log_lvgl
+                    lv_obj_t *obj = lv_img_create(parent_obj);
+                    objects.log_lvgl = obj;
+                    lv_obj_set_pos(obj, 466, 214);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_img_set_src(obj, &img_logo_lvgl);
+                    lv_obj_add_flag(obj, LV_OBJ_FLAG_ADV_HITTEST);
+                    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+                }
+                {
+                    // log_eez
+                    lv_obj_t *obj = lv_img_create(parent_obj);
+                    objects.log_eez = obj;
+                    lv_obj_set_pos(obj, 71, 214);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_img_set_src(obj, &img_log_eez);
+                    lv_obj_add_flag(obj, LV_OBJ_FLAG_ADV_HITTEST);
+                    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+                }
+                {
                     // arc
                     lv_obj_t *obj = lv_arc_create(parent_obj);
                     objects.arc = obj;
-                    lv_obj_set_pos(obj, 5, 16);
+                    lv_obj_set_pos(obj, 11, 76);
                     lv_obj_set_size(obj, 340, 404);
                     lv_arc_set_range(obj, 0, 3600);
                     lv_arc_set_bg_start_angle(obj, 91);
@@ -57,7 +77,7 @@ void create_screen_main() {
                     // arc_2
                     lv_obj_t *obj = lv_arc_create(parent_obj);
                     objects.arc_2 = obj;
-                    lv_obj_set_pos(obj, 395, 16);
+                    lv_obj_set_pos(obj, 406, 76);
                     lv_obj_set_size(obj, 340, 404);
                     lv_arc_set_range(obj, 0, 60);
                     lv_arc_set_bg_start_angle(obj, 2);
@@ -66,33 +86,17 @@ void create_screen_main() {
                 }
             }
         }
-        {
-            lv_obj_t *obj = lv_img_create(parent_obj);
-            lv_obj_set_pos(obj, 87, 472);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_img_set_src(obj, &img_log_eez);
-            lv_obj_add_flag(obj, LV_OBJ_FLAG_ADV_HITTEST);
-            lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
-        }
-        {
-            lv_obj_t *obj = lv_img_create(parent_obj);
-            lv_obj_set_pos(obj, 477, 466);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_img_set_src(obj, &img_logo_lvgl);
-            lv_obj_add_flag(obj, LV_OBJ_FLAG_ADV_HITTEST);
-            lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
-        }
     }
 }
 
 void tick_screen_main() {
     {
-        int32_t new_val = evalIntegerProperty(0, 8, 2, "Failed to evaluate Value in Arc widget");
+        int32_t new_val = evalIntegerProperty(0, 10, 2, "Failed to evaluate Value in Arc widget");
         int32_t cur_val = lv_arc_get_value(objects.arc);
         if (new_val != cur_val) lv_arc_set_value(objects.arc, new_val);
     }
     {
-        int32_t new_val = evalIntegerProperty(0, 9, 2, "Failed to evaluate Value in Arc widget");
+        int32_t new_val = evalIntegerProperty(0, 11, 2, "Failed to evaluate Value in Arc widget");
         int32_t cur_val = lv_arc_get_value(objects.arc_2);
         if (new_val != cur_val) lv_arc_set_value(objects.arc_2, new_val);
     }

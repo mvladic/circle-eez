@@ -10,6 +10,8 @@ extern "C" {
 typedef struct _objects_t {
     lv_obj_t *main;
     lv_obj_t *panel;
+    lv_obj_t *log_lvgl;
+    lv_obj_t *log_eez;
     lv_obj_t *arc;
     lv_obj_t *arc_2;
 } objects_t;
