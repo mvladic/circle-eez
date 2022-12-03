@@ -7,44 +7,79 @@
 
 objects_t objects;
 
+static void event_handler_cb_main_arc(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    if (event == LV_EVENT_VALUE_CHANGED) {
+        lv_obj_t *ta = lv_event_get_target(e);
+        int32_t value = lv_arc_get_value(ta);
+        assignIntegerProperty(0, 8, 2, value, "Failed to assign Value in Arc widget");
+    }
+}
+
+static void event_handler_cb_main_arc_2(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    if (event == LV_EVENT_VALUE_CHANGED) {
+        lv_obj_t *ta = lv_event_get_target(e);
+        int32_t value = lv_arc_get_value(ta);
+        assignIntegerProperty(0, 9, 2, value, "Failed to assign Value in Arc widget");
+    }
+}
+
 void create_screen_main() {
     lv_obj_t *obj = lv_obj_create(0);
     objects.main = obj;
     lv_obj_set_pos(obj, 0, 0);
-    lv_obj_set_size(obj, 800, 480);
+    lv_obj_set_size(obj, 800, 600);
     lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
     {
         lv_obj_t *parent_obj = obj;
         {
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            lv_obj_set_pos(obj, 356, 232);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "Hello, world!");
+            // panel
+            lv_obj_t *obj = lv_obj_create(parent_obj);
+            objects.panel = obj;
+            lv_obj_set_pos(obj, 0, 0);
+            lv_obj_set_size(obj, 800, 600);
+            lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    // arc
+                    lv_obj_t *obj = lv_arc_create(parent_obj);
+                    objects.arc = obj;
+                    lv_obj_set_pos(obj, 5, 16);
+                    lv_obj_set_size(obj, 340, 404);
+                    lv_arc_set_range(obj, 0, 3600);
+                    lv_arc_set_bg_start_angle(obj, 91);
+                    lv_arc_set_bg_end_angle(obj, 89);
+                    lv_obj_add_event_cb(obj, event_handler_cb_main_arc, LV_EVENT_ALL, 0);
+                }
+                {
+                    // arc_2
+                    lv_obj_t *obj = lv_arc_create(parent_obj);
+                    objects.arc_2 = obj;
+                    lv_obj_set_pos(obj, 395, 16);
+                    lv_obj_set_size(obj, 340, 404);
+                    lv_arc_set_range(obj, 0, 60);
+                    lv_arc_set_bg_start_angle(obj, 2);
+                    lv_arc_set_bg_end_angle(obj, 1);
+                    lv_obj_add_event_cb(obj, event_handler_cb_main_arc_2, LV_EVENT_ALL, 0);
+                }
+            }
         }
     }
 }
 
 void tick_screen_main() {
-}
-
-void create_screen_page1() {
-    lv_obj_t *obj = lv_obj_create(0);
-    objects.page1 = obj;
-    lv_obj_set_pos(obj, 0, 0);
-    lv_obj_set_size(obj, 800, 480);
-    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
     {
-        lv_obj_t *parent_obj = obj;
-        {
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            lv_obj_set_pos(obj, 356, 232);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "EEZ");
-        }
+        int32_t new_val = evalIntegerProperty(0, 8, 2, "Failed to evaluate Value in Arc widget");
+        int32_t cur_val = lv_arc_get_value(objects.arc);
+        if (new_val != cur_val) lv_arc_set_value(objects.arc, new_val);
     }
-}
-
-void tick_screen_page1() {
+    {
+        int32_t new_val = evalIntegerProperty(0, 9, 2, "Failed to evaluate Value in Arc widget");
+        int32_t cur_val = lv_arc_get_value(objects.arc_2);
+        if (new_val != cur_val) lv_arc_set_value(objects.arc_2, new_val);
+    }
 }
 
 
@@ -54,14 +89,12 @@ void create_screens() {
     lv_disp_set_theme(dispp, theme);
     
     create_screen_main();
-    create_screen_page1();
 }
 
 typedef void (*tick_screen_func_t)();
 
 tick_screen_func_t tick_screen_funcs[] = {
     tick_screen_main,
-    tick_screen_page1,
 };
 
 void tick_screen(int screen_index) {

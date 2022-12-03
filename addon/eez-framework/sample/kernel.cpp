@@ -18,7 +18,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "kernel.h"
-
+//#include "../../lvgl/lvgl/demos/lv_demos.h"
 #include "ui/ui.h"
 
 static const char FromKernel[] = "kernel";
@@ -79,7 +79,7 @@ boolean CKernel::Initialize (void)
 
 	if (bOK)
 	{
-		m_RPiTouchScreen.Initialize ();
+		//m_RPiTouchScreen.Initialize ();
 
 		bOK = m_GUI.Initialize ();
 	}
@@ -90,6 +90,8 @@ boolean CKernel::Initialize (void)
 TShutdownMode CKernel::Run (void)
 {
 	m_Logger.Write (FromKernel, LogNotice, "Compile time: " __DATE__ " " __TIME__);
+
+	//lv_demo_widgets ();
 
 	ui_init();
 

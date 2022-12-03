@@ -9,16 +9,15 @@ extern "C" {
 
 typedef struct _objects_t {
     lv_obj_t *main;
-    lv_obj_t *page1;
+    lv_obj_t *panel;
+    lv_obj_t *arc;
+    lv_obj_t *arc_2;
 } objects_t;
 
 extern objects_t objects;
 
 void create_screen_main();
 void tick_screen_main();
-
-void create_screen_page1();
-void tick_screen_page1();
 
 void create_screens();
 void tick_screen(int screen_index);

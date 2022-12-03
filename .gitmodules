@@ -6,4 +6,4 @@
 	url = https://github.com/lvgl/lvgl.git
 [submodule "addon/eez-framework/eez-framework"]
 	path = addon/eez-framework/eez-framework
-	url = https://github.com/eez-open/eez-framework
+	url = https://github.com/eez-open/eez-framework.git
