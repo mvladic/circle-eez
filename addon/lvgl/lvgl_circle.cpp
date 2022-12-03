@@ -17,7 +17,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-#include <lvgl/lvgl.h>
+#include <lvgl/lvgl_circle.h>
 #include <circle/devicenameservice.h>
 #include <circle/koptions.h>
 #include <circle/timer.h>

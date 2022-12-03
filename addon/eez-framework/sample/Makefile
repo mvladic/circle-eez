@@ -3,12 +3,16 @@ NEWLIBDIR = $(CIRCLEHOME)/../../install/$(NEWLIB_ARCH)
 
 include $(CIRCLEHOME)/../../Config.mk
 
-OBJS	= main.o kernel.o ui/flow_def.o ui/images.o ui/screens.o ui/styles.o ui/ui.o
+CSRCS += $(shell find -L ./ui -name "*.c")
+OBJS	= main.o kernel.o $(CSRCS:.c=.o) 
+EXTRACLEAN += $(CSRCS:.c=.o) $(CSRCS:.c=.d)
+
+include $(CIRCLEHOME)/Rules.mk
 
 VPATH += :../eez-framework/src
 VPATH += :../../lvgl
-CFLAGS += -DEEZ_FOR_LVGL "-I../eez-framework/src"
-CPPFLAGS += -DEEZ_FOR_LVGL "-I../eez-framework/src" "-I../eez-framework/src"
+CFLAGS += -DEEZ_FOR_LVGL -DEEZ_PLATFORM_RASPBERRY -I"../eez-framework/src" -I"../../lvgl"
+CPPFLAGS += -DEEZ_FOR_LVGL -DEEZ_PLATFORM_RASPBERRY -I"../eez-framework/src" -I"../../lvgl"
 
 LIBS	= ../eez-framework.a \
         $(NEWLIBDIR)/lib/libm.a \
@@ -23,7 +27,5 @@ LIBS	= ../eez-framework.a \
         $(CIRCLEHOME)/lib/net/libnet.a \
         $(CIRCLEHOME)/lib/sched/libsched.a \
         $(CIRCLEHOME)/lib/libcircle.a
-
-include $(CIRCLEHOME)/Rules.mk
 
 -include $(DEPS)

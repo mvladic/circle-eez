@@ -14,7 +14,7 @@ VPATH += :../lvgl
 CSRCS += $(shell find -L ./eez-framework/src -name "*.c")
 CPPSRCS += $(shell find -L ./eez-framework/src -name "*.cpp")
 CFLAGS += -DEEZ_FOR_LVGL -DEEZ_PLATFORM_RASPBERRY "-I./eez-framework/src"
-CPPFLAGS += -DEEZ_FOR_LVGL -DEEZ_PLATFORM_RASPBERRY -DEEZ_NO_STD_LIB "-I./eez-framework/src"
+CPPFLAGS += -DEEZ_FOR_LVGL -DEEZ_PLATFORM_RASPBERRY "-I./eez-framework/src"
 
 OBJS = $(CSRCS:.c=.o) $(CPPSRCS:.cpp=.o)
 

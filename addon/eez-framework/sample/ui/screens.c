@@ -66,6 +66,22 @@ void create_screen_main() {
                 }
             }
         }
+        {
+            lv_obj_t *obj = lv_img_create(parent_obj);
+            lv_obj_set_pos(obj, 87, 472);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_img_set_src(obj, &img_log_eez);
+            lv_obj_add_flag(obj, LV_OBJ_FLAG_ADV_HITTEST);
+            lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+        }
+        {
+            lv_obj_t *obj = lv_img_create(parent_obj);
+            lv_obj_set_pos(obj, 477, 466);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_img_set_src(obj, &img_logo_lvgl);
+            lv_obj_add_flag(obj, LV_OBJ_FLAG_ADV_HITTEST);
+            lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+        }
     }
 }
 

@@ -31,7 +31,7 @@
 #include <circle/logger.h>
 #include <circle/usb/usbhcidevice.h>
 #include <circle/input/rpitouchscreen.h>
-#include <lvgl/lvgl.h>
+#include <lvgl/lvgl_circle.h>
 #include <circle/types.h>
 
 enum TShutdownMode
