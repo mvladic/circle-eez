@@ -9,7 +9,7 @@ LVGL_DIR_NAME = lvgl
 
 include $(LVGL_DIR)/lvgl/lvgl.mk
 
-OBJS = lvgl.o $(CSRCS:.c=.o)
+OBJS = lvgl_circle.o $(CSRCS:.c=.o)
 
 EXTRACLEAN += $(CSRCS:.c=.o) $(CSRCS:.c=.d)
 
