@@ -30,7 +30,7 @@ CKernel::CKernel (void)
 	m_USBHCI (&m_Interrupt, &m_Timer, TRUE),
 	m_GUI (&m_Screen, &m_Interrupt)
 {
-	m_ActLED.Blink (5);	// show we are alive
+	//m_ActLED.Blink (5);	// show we are alive
 }
 
 CKernel::~CKernel (void)
